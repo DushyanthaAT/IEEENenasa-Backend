@@ -1,8 +1,11 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import authRoute from "./routes/auth.route.js";
+import cors from "cors";
 
 dotenv.config();
+const port = 5002;
 
 mongoose
   .connect(process.env.MONGO)
@@ -15,14 +18,11 @@ mongoose
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
-app.get("/test-db", async (req, res) => {
+app.get("/api/test-db", async (req, res) => {
   try {
-    // Example of interacting with the database
-    const databases = await mongoose.connection.db.admin().listDatabases();
-    res
-      .status(200)
-      .json({ message: "Database connection is working!", databases });
+    res.status(200).json({ message: "Database connection is working!" });
   } catch (error) {
     res
       .status(500)
@@ -30,6 +30,8 @@ app.get("/test-db", async (req, res) => {
   }
 });
 
-app.listen(5000, () => {
-  console.log("Server is running on port 5000");
+app.use("/api/auth", authRoute);
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
