@@ -6,6 +6,7 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
+      unique: true,
     },
     date: {
       type: Date,
@@ -16,7 +17,7 @@ const postSchema = new mongoose.Schema(
     location: {
       type: String,
     },
-    decription: {
+    description: {
       type: String,
       required: true,
       trim: true,
