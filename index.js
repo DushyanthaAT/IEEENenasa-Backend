@@ -4,7 +4,6 @@ import dotenv from "dotenv";
 import authRoute from "./routes/auth.route.js";
 import postRoute from "./routes/post.route.js";
 import cors from "cors";
-import supabase from "./config/supabaseClient.js";
 
 dotenv.config();
 const port = 5002;
