@@ -22,14 +22,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.get("/api/test-db", async (req, res) => {
-  try {
-    res.status(200).json({ message: "Database connection is working!" });
-  } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Error testing the database connection.", error });
-  }
+app.get("/api/data", (req, res) => {
+  res.json({ message: "This is some data from the backend." });
 });
 
 app.use("/api/auth", authRoute);
