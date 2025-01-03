@@ -19,7 +19,7 @@ mongoose
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: "https://ieee-nenasa.vercel.app/" }));
+app.use(cors());
 
 app.get("/api/data", (req, res) => {
   res.json({ message: "This is some data from the backend." });
